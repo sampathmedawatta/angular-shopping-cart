@@ -10,9 +10,8 @@
     <p class="card-title">
       <strong>{{ productItem.name }}</strong>
     </p>
-    <p class="card-text">{{ productItem.description | slice: 0:100 }}...</p>
     <p class="card-text product-text">
-      <strong>{{ productItem.price | currency: "LKR " }}</strong>
+      <span>{{ productItem.price | currency: "LKR " }}</span>
     </p>
     <p class="card-text product-text">
       Qty :
@@ -31,6 +30,7 @@
         <button
           type="button"
           class="btn btn-sm btn-outline-secondary product-btn"
+          (click)="open(content)"
         >
           VIEW
         </button>
@@ -41,3 +41,59 @@
     </div>
   </div>
 </div>
+
+<!-- modal popup for roduct details -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ productItem.name }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img
+      class="bd-placeholder-img card-img-top"
+      width="100%"
+      height="225"
+      [src]="productItem.imageUrl"
+    />
+
+    <div class="card-body">
+      <p class="card-text">{{ productItem.description | slice: 0:100 }}...</p>
+      <p class="card-text product-text">
+        <strong>{{ productItem.price | currency: "LKR " }}</strong>
+      </p>
+      <p class="card-text product-text">
+        Qty :
+        <input
+          type="number"
+          min="1"
+          max="10"
+          value="1"
+          class="product-qty-btn"
+        />
+      </p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="d-flex justify-content-lg-center align-items-center">
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-primary product-btn"
+          (click)="handlerAddToCart()"
+        >
+          ADD TO CART
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-dark product-btn">
+          WISHLIST
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
