@@ -33,8 +33,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   handlerAddToCart() {
-    this.cartService.addProductToCart(this.productItem).subscribe(() => {
-      this.messengerService.sendMsgAddProductToCart(this.productItem);
-    });
+    this.cartService.addProductToCart(this.productItem);
+    this.messengerService.sendMsgAddProductToCart(this.productItem);
   }
 }

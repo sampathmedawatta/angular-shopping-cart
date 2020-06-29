@@ -30,10 +30,8 @@ export class CartComponent implements OnInit {
   }
 
   loadCartITems() {
-    this.cartService.getCartItems().subscribe((items: CartItem[]) => {
-      this.cartItems = items;
-      this.calculateCartTotal();
-    });
+    this.cartItems = this.cartService.getCartItems();
+    this.calculateCartTotal();
   }
 
   calculateCartTotal() {
