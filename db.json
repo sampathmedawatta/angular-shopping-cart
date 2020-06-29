@@ -1,0 +1,63 @@
+{
+  "products": [
+    {
+      "id": "529eee6b-8d0c-4282-afd1-0f5480e3c6ee",
+      "name": "product 1",
+      "description": "this is prodcut 1",
+      "price": 100,
+      "imageUrl": "assets/images/sample-product-1.jpg"
+    },
+    {
+      "id": "529eee6b-8d0c-4282-afd1-0f5480e3c6ef",
+      "name": "product 2",
+      "description": "this is prodcut 2",
+      "price": 200,
+      "imageUrl": "assets/images/sample-product-1.jpg"
+    },
+    {
+      "id": "529eee6b-8d0c-4282-afd1-0f5480e3c6eg",
+      "name": "product 3",
+      "description": "this is prodcut 3",
+      "price": 300,
+      "imageUrl": "assets/images/sample-product-1.jpg"
+    },
+    {
+      "id": "529eee6b-8d0c-4282-afd1-0f5480e3c6eh",
+      "name": "product 4",
+      "description": "this is prodcut 4",
+      "price": 400,
+      "imageUrl": "assets/images/sample-product-1.jpg"
+    },
+    {
+      "id": "529eee6b-8d0c-4282-afd1-0f5480e3c6ei",
+      "name": "product 5",
+      "description": "this is prodcut 5",
+      "price": 500,
+      "imageUrl": "assets/images/sample-product-1.jpg"
+    },
+    {
+      "id": "529eee6b-8d0c-4282-afd1-0f5480e3c6ej",
+      "name": "product 6",
+      "description": "this is prodcut 6",
+      "price": 600,
+      "imageUrl": "assets/images/sample-product-1.jpg"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
