@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { MessengerService } from 'src/app/services/messenger.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
@@ -13,7 +13,8 @@ export class ProductItemComponent implements OnInit {
 
   constructor(
     private messengerService: MessengerService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {}
@@ -32,6 +33,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   handlerAddToCart() {
+    this.cartService.addProductToCart(this.productItem);
     this.messengerService.sendMsgAddProductToCart(this.productItem);
   }
 }
