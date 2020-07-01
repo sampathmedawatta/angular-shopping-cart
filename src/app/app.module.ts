@@ -16,6 +16,10 @@ import { CartComponent } from './components/shopping-cart/cart/cart.component';
 import { CartItemComponent } from './components/shopping-cart/cart/cart-item/cart-item.component';
 import { ProductItemComponent } from './components/shopping-cart/product-list/product-item/product-item.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CartComponent,
     CartItemComponent,
     ProductItemComponent,
+    LoginComponent,
+    RegisterComponent,
+    OrderHistoryComponent,
+    PageNotFoundComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
   providers: [],

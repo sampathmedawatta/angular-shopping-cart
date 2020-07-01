@@ -29,3 +29,14 @@
 .product-qty-btn {
   width: 50px;
 }
+.login-card-header {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.login-card {
+  min-height: 325px;
+}
+.login-card-register-text {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
