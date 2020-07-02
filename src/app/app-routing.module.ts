@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { CheckoutComponent } from './components/shopping-cart/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/shop', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'shop', component: ShoppingCartComponent },
   { path: 'order-history', component: OrderHistoryComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

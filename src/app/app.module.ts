@@ -21,6 +21,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
+import { CheckoutComponent } from './components/shopping-cart/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PageNotFoundComponent } from './components/shared/page-not-found/page-n
     RegisterComponent,
     OrderHistoryComponent,
     PageNotFoundComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
