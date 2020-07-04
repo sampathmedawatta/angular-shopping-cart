@@ -45,7 +45,7 @@ export class CheckoutItemListComponent implements OnInit {
   }
 
   updateItemQry(cartItem: CartItem) {
-    this.cartService.updateCartItemQry(cartItem);
+    this.cartService.updateCartItemQty(cartItem);
     this.messengerService.sendMsgUpdateProductInCart();
   }
 }
