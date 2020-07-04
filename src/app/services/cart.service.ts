@@ -21,7 +21,7 @@ export class CartService {
     this.createCart(product, qty);
   }
 
-  updateCartItemQry(cartItem: CartItem) {
+  updateCartItemQty(cartItem: CartItem) {
     this.getLocalCart();
     this.updateCart(cartItem);
   }
