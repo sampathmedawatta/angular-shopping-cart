@@ -1,0 +1,33 @@
+<div class="checkout-header text-center">
+  <h3>Shopping Cart</h3>
+</div>
+<div class="cart-table">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Remove</th>
+        <th scope="col">Product(s)</th>
+        <th class="text-right" scope="col">Price</th>
+        <th class="text-right" scope="col">Qty</th>
+        <th class="text-right" scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of cart">
+        <td>
+          <button class="btn" (click)="handlerRemoveCartItem(cartItem)">
+            X
+          </button>
+        </td>
+        <td>{{ cartItem.productName }}</td>
+        <td class="text-right">
+          {{ cartItem.price | currency: "LKR " }}
+        </td>
+        <td class="text-right">{{ cartItem.qty | number }}</td>
+        <td class="text-right">
+          {{ cartItem.qty * cartItem.price | currency: "LKR " }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
