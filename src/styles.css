@@ -2,8 +2,13 @@
   font-size: small;
 }
 .cart-item-price {
-  margin-top: 7px;
+  font-weight: 600;
 }
+
+.card-text:last-child {
+  margin-bottom: 10px;
+}
+
 .filters {
   font-size: small;
 }
@@ -32,6 +37,7 @@
 .product-qty-btn {
   width: 50px;
 }
+
 .login-card-header {
   padding-top: 30px;
   padding-bottom: 30px;

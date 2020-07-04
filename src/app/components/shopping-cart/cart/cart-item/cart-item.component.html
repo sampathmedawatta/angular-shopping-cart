@@ -1,12 +1,43 @@
 <div class="cart-item">
-  <span>
-    <button class="btn" (click)="handlerRemoveCartItem(cartItem)">X</button>
-  </span>
+  <div class="row">
+    <div class="col-md-2 text-left">
+      <span>
+        <button
+          class="btn btn-outline-primary btn-sm"
+          (click)="handlerRemoveCartItem(cartItem)"
+        >
+          X
+        </button>
+      </span>
+    </div>
 
-  <span>{{ cartItem.productName }}</span> * <span>{{ cartItem.qty }} </span>
-  <span>
-    <strong class="cart-item-price float-right">{{
-      cartItem.qty * cartItem.price | currency: "LKR "
-    }}</strong>
-  </span>
+    <div class="col-md-6 text-left">
+      <span>{{ cartItem.productName }}</span>
+    </div>
+
+    <div class="col-md-4 text-right">
+      <form #form="ngForm">
+        <input
+          type="number"
+          min="1"
+          max="100"
+          class="product-qty-btn"
+          name="qty"
+          #qty="ngModel"
+          [(ngModel)]="cartItem.qty"
+          value="{{ cartItem.qty }}"
+          (click)="setItemQty(cartItem)"
+          (keyup.enter)="setItemQty(cartItem)"
+          (blur)="setItemQty(cartItem)"
+        />
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-right">
+      <span class="cart-item cart-item-price float-right">
+        {{ cartItem.qty * cartItem.price | currency: "LKR " }}
+      </span>
+    </div>
+  </div>
 </div>

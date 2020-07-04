@@ -18,6 +18,15 @@ export class CartItemComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  setItemQty(cartItem: CartItem) {
+    this.updateItemQry(cartItem);
+  }
+
+  updateItemQry(cartItem: CartItem) {
+    this.cartService.updateCartItemQry(cartItem);
+    this.messengerService.sendMsgUpdateProductInCart();
+  }
+
   handlerRemoveCartItem(cartItem: CartItem) {
     this.cartService.removeCartItem(cartItem);
     this.messengerService.sendMsgRemoveProductFromCart();

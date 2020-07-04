@@ -16,27 +16,45 @@ export class CartService {
     return this.locatCartItems;
   }
 
-  addProductToCart(product: Product) {
+  addProductToCart(product: Product, qty: number) {
     this.getLocalCart();
-    this.createCart(product);
+    this.createCart(product, qty);
   }
 
-  createCart(product: Product) {
+  updateCartItemQry(cartItem: CartItem) {
+    this.getLocalCart();
+    this.updateCart(cartItem);
+  }
+
+  createCart(product: Product, qty: number) {
     let productExist = false;
 
     for (let i in this.locatCartItems) {
       if (this.locatCartItems[i].productId === product.id) {
-        this.locatCartItems[i].qty++;
+        this.locatCartItems[i].qty = this.locatCartItems[i].qty + qty;
         productExist = true;
         break;
       }
     }
 
     if (!productExist) {
-      this.locatCartItems.push(new CartItem(product));
+      this.locatCartItems.push(new CartItem(product, qty));
     }
     this.setLocalCart();
   }
+
+  updateCart(cartItem: CartItem) {
+    for (let i in this.locatCartItems) {
+      if (this.locatCartItems[i].productId === cartItem.productId) {
+        this.locatCartItems[i].qty = cartItem.qty;
+        break;
+      }
+    }
+
+    this.setLocalCart();
+  }
+
+  checkProductIsExist() {}
 
   getLocalCart() {
     let cart = localStorage.getItem('cart');
