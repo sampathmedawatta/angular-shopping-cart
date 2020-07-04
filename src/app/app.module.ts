@@ -22,6 +22,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import { CheckoutComponent } from './components/shopping-cart/checkout/checkout.component';
+import { CheckoutItemListComponent } from './components/shopping-cart/checkout/checkout-item-list/checkout-item-list.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CheckoutComponent } from './components/shopping-cart/checkout/checkout.
     OrderHistoryComponent,
     PageNotFoundComponent,
     CheckoutComponent,
+    CheckoutItemListComponent,
   ],
   imports: [
     BrowserModule,
