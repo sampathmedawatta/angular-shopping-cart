@@ -8,14 +8,17 @@
         <th scope="col">Remove</th>
         <th scope="col">Product(s)</th>
         <th class="text-right" scope="col">Price</th>
-        <th class="text-right" scope="col">Qty</th>
+        <th class="text-center" scope="col">Qty</th>
         <th class="text-right" scope="col">Total</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let cartItem of cart">
         <td>
-          <button class="btn" (click)="handlerRemoveCartItem(cartItem)">
+          <button
+            class="btn btn-outline-primary"
+            (click)="handlerRemoveCartItem(cartItem)"
+          >
             X
           </button>
         </td>
@@ -23,7 +26,23 @@
         <td class="text-right">
           {{ cartItem.price | currency: "LKR " }}
         </td>
-        <td class="text-right">{{ cartItem.qty | number }}</td>
+        <td class="text-center">
+          <form #form="ngForm">
+            <input
+              type="number"
+              min="1"
+              max="100"
+              class="product-qty-btn"
+              name="qty"
+              #qty="ngModel"
+              [(ngModel)]="cartItem.qty"
+              value="{{ cartItem.qty }}"
+              (click)="setItemQty(cartItem)"
+              (keyup.enter)="setItemQty(cartItem)"
+              (blur)="setItemQty(cartItem)"
+            />
+          </form>
+        </td>
         <td class="text-right">
           {{ cartItem.qty * cartItem.price | currency: "LKR " }}
         </td>

@@ -10,14 +10,16 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class ProductItemComponent implements OnInit {
   @Input() productItem: Product;
-
+  item: any = {};
   constructor(
     private messengerService: MessengerService,
     private modalService: NgbModal,
     private cartService: CartService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.item.qty = 1;
+  }
 
   open(content) {
     this.modalService
@@ -33,7 +35,8 @@ export class ProductItemComponent implements OnInit {
   }
 
   handlerAddToCart() {
-    this.cartService.addProductToCart(this.productItem);
-    this.messengerService.sendMsgAddProductToCart(this.productItem);
+    console.log(this.item.qty);
+    this.cartService.addProductToCart(this.productItem, this.item.qty);
+    this.messengerService.sendMsgAddProductToCart();
   }
 }

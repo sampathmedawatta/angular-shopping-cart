@@ -7,11 +7,19 @@ export class MessengerService {
   subject = new Subject();
   constructor() {}
 
-  sendMsgAddProductToCart(product) {
-    this.subject.next(product);
+  sendMsgAddProductToCart() {
+    this.subject.next();
   }
 
   getMsgAddProductToCart() {
+    return this.subject.asObservable();
+  }
+
+  sendMsgUpdateProductInCart() {
+    this.subject.next();
+  }
+
+  getMsgUpdateProductInCart() {
     return this.subject.asObservable();
   }
 

@@ -13,11 +13,21 @@
     <p class="card-text product-text">
       <span>{{ productItem.price | currency: "LKR " }}</span>
     </p>
-    <p class="card-text product-text">
-      Qty :
-      <input type="number" min="1" max="10" value="1" class="product-qty-btn" />
-    </p>
-
+    <form #form="ngForm">
+      <p class="card-text product-text">
+        Qty :
+        <input
+          type="number"
+          min="1"
+          max="10"
+          value="{{ item.qty }}"
+          class="product-qty-btn"
+          name="qty"
+          #qty="ngModel"
+          [(ngModel)]="item.qty"
+        />
+      </p>
+    </form>
     <div class="d-flex justify-content-lg-center align-items-center">
       <div class="btn-group">
         <button
@@ -68,16 +78,21 @@
       <p class="card-text product-text">
         <strong>{{ productItem.price | currency: "LKR " }}</strong>
       </p>
-      <p class="card-text product-text">
-        Qty :
-        <input
-          type="number"
-          min="1"
-          max="10"
-          value="1"
-          class="product-qty-btn"
-        />
-      </p>
+      <form #form="ngForm">
+        <p class="card-text product-text">
+          Qty :
+          <input
+            type="number"
+            min="1"
+            max="100"
+            value="{{ item.qty }}"
+            class="product-qty-btn"
+            name="qty"
+            #qty="ngModel"
+            [(ngModel)]="item.qty"
+          />
+        </p>
+      </form>
     </div>
   </div>
   <div class="modal-footer">

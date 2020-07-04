@@ -39,4 +39,13 @@ export class CheckoutItemListComponent implements OnInit {
     this.cartService.removeCartItem(cartItem);
     this.messengerService.sendMsgRemoveProductFromCart();
   }
+
+  setItemQty(cartItem: CartItem) {
+    this.updateItemQry(cartItem);
+  }
+
+  updateItemQry(cartItem: CartItem) {
+    this.cartService.updateCartItemQry(cartItem);
+    this.messengerService.sendMsgUpdateProductInCart();
+  }
 }
