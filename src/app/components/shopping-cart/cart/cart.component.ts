@@ -27,17 +27,14 @@ export class CartComponent implements OnInit {
       .subscribe((product: Product) => {
         this.loadCartITems();
       });
+
+    this.messengerService.getMsgRemoveProductFromCart().subscribe(() => {
+      this.loadCartITems();
+    });
   }
 
   loadCartITems() {
     this.cartItems = this.cartService.getCartItems();
-    this.calculateCartTotal();
-  }
-
-  calculateCartTotal() {
-    this.cartTotal = 0;
-    this.cartItems.forEach((item) => {
-      this.cartTotal += item.qty * item.price;
-    });
+    this.cartTotal = this.cartService.calculateCartTotal(this.cartItems);
   }
 }

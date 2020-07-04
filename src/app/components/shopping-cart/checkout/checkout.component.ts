@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import { CartItem } from 'src/app/models/cart-item';
+import { MessengerService } from 'src/app/services/messenger.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,22 +14,28 @@ export class CheckoutComponent implements OnInit {
   Tax = 0;
   subTotal = 0;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private messengerService: MessengerService
+  ) {}
 
   ngOnInit(): void {
+    this.handleSubscription();
     this.loadCartITems();
   }
-
+  handleSubscription() {
+    this.messengerService.getMsgRemoveProductFromCart().subscribe(() => {
+      this.loadCartITems();
+    });
+  }
   loadCartITems() {
     this.cart = this.cartService.getCartItems();
-    this.calculateCartTotal();
+    this.cartTotal = this.cartService.calculateCartTotal(this.cart);
   }
 
-  calculateCartTotal() {
-    this.cartTotal = 0;
-    this.cart.forEach((item) => {
-      this.cartTotal += item.qty * item.price;
-    });
-    this.subTotal = this.cartTotal + this.Tax;
+  handlerRemoveCartItem(cartItem: CartItem) {
+    this.cartService.removeCartItem(cartItem);
+    this.messengerService.sendMsgRemoveProductFromCart();
+    this.loadCartITems();
   }
 }

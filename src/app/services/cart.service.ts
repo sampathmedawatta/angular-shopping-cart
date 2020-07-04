@@ -6,7 +6,9 @@ import { Product } from '../models/product';
   providedIn: 'root',
 })
 export class CartService {
-  locatCartItems = [];
+  locatCartItems: CartItem[] = [];
+  cartTotal = 0;
+
   constructor() {}
 
   getCartItems() {
@@ -33,7 +35,7 @@ export class CartService {
     if (!productExist) {
       this.locatCartItems.push(new CartItem(product));
     }
-    localStorage.setItem('cart', JSON.stringify(this.locatCartItems));
+    this.setLocalCart();
   }
 
   getLocalCart() {
@@ -41,5 +43,26 @@ export class CartService {
     if (cart) {
       this.locatCartItems = JSON.parse(cart);
     }
+  }
+
+  setLocalCart() {
+    localStorage.setItem('cart', JSON.stringify(this.locatCartItems));
+  }
+
+  removeCartItem(cartItem: CartItem) {
+    this.getLocalCart();
+
+    if (this.locatCartItems) {
+      this.locatCartItems.splice(this.locatCartItems.indexOf(cartItem), 1);
+      this.setLocalCart();
+    }
+  }
+
+  calculateCartTotal(cartItems: CartItem[]) {
+    this.cartTotal = 0;
+    cartItems.forEach((item) => {
+      this.cartTotal += item.qty * item.price;
+    });
+    return this.cartTotal;
   }
 }

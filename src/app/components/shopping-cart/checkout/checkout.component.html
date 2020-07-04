@@ -18,7 +18,9 @@
           <tbody>
             <tr *ngFor="let cartItem of cart">
               <th scope="col">
-                <button class="btn">X</button>
+                <button class="btn" (click)="handlerRemoveCartItem(cartItem)">
+                  X
+                </button>
               </th>
               <td>{{ cartItem.productName }}</td>
               <td class="text-right">

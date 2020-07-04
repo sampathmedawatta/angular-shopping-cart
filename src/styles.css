@@ -1,6 +1,9 @@
 .cart-item {
   font-size: small;
 }
+.cart-item-price {
+  margin-top: 7px;
+}
 .filters {
   font-size: small;
 }

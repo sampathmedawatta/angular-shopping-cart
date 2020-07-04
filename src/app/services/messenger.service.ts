@@ -14,4 +14,12 @@ export class MessengerService {
   getMsgAddProductToCart() {
     return this.subject.asObservable();
   }
+
+  sendMsgRemoveProductFromCart() {
+    this.subject.next();
+  }
+
+  getMsgRemoveProductFromCart() {
+    return this.subject.asObservable();
+  }
 }
