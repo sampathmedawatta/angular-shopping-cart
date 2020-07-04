@@ -53,7 +53,10 @@ export class CartService {
     this.getLocalCart();
 
     if (this.locatCartItems) {
-      this.locatCartItems.splice(this.locatCartItems.indexOf(cartItem), 1);
+      this.locatCartItems = this.locatCartItems.filter(
+        ({ productId }) => productId !== cartItem.productId
+      );
+
       this.setLocalCart();
     }
   }
