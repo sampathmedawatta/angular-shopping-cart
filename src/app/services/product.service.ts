@@ -5,7 +5,6 @@ import { Product } from '../models/product';
 import { featureProductsUrl } from 'src/app/config/api';
 import { homePageProductsUrl } from 'src/app/config/api';
 import { productsByCategoryUrl } from 'src/app/config/api';
-import { productDetailUrl } from 'src/app/config/api';
 
 import { from } from 'rxjs';
 import { Guid } from 'guid-typescript';
@@ -15,8 +14,8 @@ import { Guid } from 'guid-typescript';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  getProductsByCategory(id: Guid): Observable<Product[]> {
-    return this.http.get<Product[]>(productsByCategoryUrl);
+  getProductsByCategory(categoryName: string): Observable<Product[]> {
+    return this.http.get<Product[]>(productsByCategoryUrl + '/' + categoryName);
   }
 
   getFeatureProducts(): Observable<Product[]> {
@@ -25,9 +24,5 @@ export class ProductService {
 
   getHomePageProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(homePageProductsUrl);
-  }
-
-  getProductDetail(id: Guid): Observable<Product[]> {
-    return this.http.get<Product[]>(productDetailUrl);
   }
 }

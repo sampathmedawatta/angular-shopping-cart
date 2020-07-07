@@ -8,17 +8,20 @@ import { Product } from 'src/app/models/product';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  FeatureProductList: Product[] = [];
-  HomePageProductList: Product[] = [];
+  featureProductList: Product[] = [];
+  homePageProductList: Product[] = [];
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.productService.getHomePageProducts().subscribe((products) => {
-      this.HomePageProductList = products;
+      this.homePageProductList = products;
+
+      console.log(this.homePageProductList);
     });
 
     this.productService.getFeatureProducts().subscribe((products) => {
-      this.FeatureProductList = products;
+      this.featureProductList = products;
+      console.log(this.featureProductList);
     });
   }
 }

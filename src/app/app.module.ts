@@ -23,6 +23,7 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import { CheckoutComponent } from './components/shopping-cart/checkout/checkout.component';
 import { CheckoutItemListComponent } from './components/shopping-cart/checkout/checkout-item-list/checkout-item-list.component';
+import { ProductCategoryComponent } from './components/shopping-cart/product-category/product-category.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CheckoutItemListComponent } from './components/shopping-cart/checkout/c
     PageNotFoundComponent,
     CheckoutComponent,
     CheckoutItemListComponent,
+    ProductCategoryComponent,
   ],
   imports: [
     BrowserModule,
