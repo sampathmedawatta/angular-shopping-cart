@@ -1,8 +1,11 @@
 import { environment } from 'src/environments/environment';
 
 export const baseUrl = environment.production
-  ? 'http://api.shopingcart.com'
-  : 'http://localhost:3000';
+  ? 'https://localhost:44305/api/Product'
+  : 'https://localhost:44305/api/Product';
 
-export const productsUrl = baseUrl + '/products';
-export const cartUrl = baseUrl + '/cart';
+export const featureProductsUrl = baseUrl + '/FeatureProducts';
+export const homePageProductsUrl = baseUrl + '/HomePageProducts';
+export const productsByCategoryUrl =
+  baseUrl + '/{CategoryId}/ProductsByCategory';
+export const productDetailUrl = baseUrl + '/{id}';
