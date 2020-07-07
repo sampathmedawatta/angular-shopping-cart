@@ -10,6 +10,9 @@
     <p class="card-title">
       <strong>{{ productItem.name }}</strong>
     </p>
+    <p class="card-text">
+      {{ productItem.shortDescription | slice: 0:100 }}...
+    </p>
     <p class="card-text product-text">
       <span>{{ productItem.price | currency: "LKR " }}</span>
     </p>
@@ -74,7 +77,7 @@
     />
 
     <div class="card-body">
-      <p class="card-text">{{ productItem.description | slice: 0:100 }}...</p>
+      <p class="card-text">{{ productItem.description }}</p>
       <p class="card-text product-text">
         <strong>{{ productItem.price | currency: "LKR " }}</strong>
       </p>
