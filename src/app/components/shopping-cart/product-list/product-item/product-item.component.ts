@@ -3,6 +3,7 @@ import { Product } from 'src/app/models/product';
 import { MessengerService } from 'src/app/services/messenger.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CartService } from 'src/app/services/cart.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
@@ -11,10 +12,12 @@ import { CartService } from 'src/app/services/cart.service';
 export class ProductItemComponent implements OnInit {
   @Input() productItem: Product;
   item: any = {};
+  @Input() addedToWishlist: boolean;
   constructor(
     private messengerService: MessengerService,
     private modalService: NgbModal,
-    private cartService: CartService
+    private cartService: CartService,
+    private wishlistService: WishlistService
   ) {}
 
   ngOnInit(): void {
@@ -35,8 +38,14 @@ export class ProductItemComponent implements OnInit {
   }
 
   handlerAddToCart() {
-    console.log(this.item.qty);
     this.cartService.addProductToCart(this.productItem, this.item.qty);
     this.messengerService.sendMsgAddProductToCart();
+  }
+
+  handlerAddToWishlist() {
+    this.addedToWishlist = this.wishlistService.addWishlist(
+      this.productItem.id
+    );
+    this.messengerService.sendMsgAddToWishList();
   }
 }
