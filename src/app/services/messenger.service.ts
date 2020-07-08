@@ -30,4 +30,12 @@ export class MessengerService {
   getMsgRemoveProductFromCart() {
     return this.subject.asObservable();
   }
+
+  sendMsgAddToWishList() {
+    this.subject.next();
+  }
+
+  getMsgAddToWishList() {
+    return this.subject.asObservable();
+  }
 }

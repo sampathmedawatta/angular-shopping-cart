@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
+import { WishlistService } from 'src/app/services/wishlist.service';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-product-category',
@@ -11,13 +13,17 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductCategoryComponent implements OnInit {
   productList: Product[] = [];
   categoryName: string;
+  wishlist: Guid[] = [];
+
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private wishlistService: WishlistService
   ) {}
 
   ngOnInit(): void {
     this.getProductsByCategoryName();
+    this.wishlist = this.wishlistService.getWishlist();
   }
 
   getProductsByCategoryName() {

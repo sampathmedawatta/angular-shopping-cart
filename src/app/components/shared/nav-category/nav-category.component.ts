@@ -14,7 +14,6 @@ export class NavCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getCategoryList().subscribe((categories) => {
       this.categoryList = categories;
-      console.log(this.categoryList);
     });
   }
 }

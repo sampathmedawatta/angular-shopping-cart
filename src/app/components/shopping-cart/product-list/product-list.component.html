@@ -1,11 +1,17 @@
 <div class="row">
   <div class="col-md-4" *ngFor="let homePageProduct of homePageProductList">
-    <app-product-item [productItem]="homePageProduct"></app-product-item>
+    <app-product-item
+      [productItem]="homePageProduct"
+      [addedToWishlist]="wishlist.indexOf(homePageProduct.id) >= 0"
+    ></app-product-item>
   </div>
 </div>
 <h3>Feature Products</h3>
 <div class="row">
   <div class="col-md-4" *ngFor="let featureProduct of featureProductList">
-    <app-product-item [productItem]="featureProduct"></app-product-item>
+    <app-product-item
+      [productItem]="featureProduct"
+      [addedToWishlist]="wishlist.indexOf(featureProduct.id) >= 0"
+    ></app-product-item>
   </div>
 </div>

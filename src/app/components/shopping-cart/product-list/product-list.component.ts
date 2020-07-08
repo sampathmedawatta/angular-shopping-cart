@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
+import { WishlistService } from 'src/app/services/wishlist.service';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-product-list',
@@ -10,7 +12,11 @@ import { Product } from 'src/app/models/product';
 export class ProductListComponent implements OnInit {
   featureProductList: Product[] = [];
   homePageProductList: Product[] = [];
-  constructor(private productService: ProductService) {}
+  wishlist: Guid[] = [];
+  constructor(
+    private productService: ProductService,
+    private wishlistService: WishlistService
+  ) {}
 
   ngOnInit(): void {
     this.productService.getHomePageProducts().subscribe((products) => {
@@ -20,5 +26,7 @@ export class ProductListComponent implements OnInit {
     this.productService.getFeatureProducts().subscribe((products) => {
       this.featureProductList = products;
     });
+
+    this.wishlist = this.wishlistService.getWishlist();
   }
 }
