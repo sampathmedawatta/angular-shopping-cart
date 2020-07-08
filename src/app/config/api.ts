@@ -7,3 +7,5 @@ export const baseUrl = environment.production
 export const featureProductsUrl = baseUrl + '/Product/FeatureProducts';
 export const homePageProductsUrl = baseUrl + '/Product/HomePageProducts';
 export const productsByCategoryUrl = baseUrl + '/Product/ProductsByCategory';
+
+export const categoryUrl = baseUrl + '/Category';

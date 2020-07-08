@@ -15,13 +15,10 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getHomePageProducts().subscribe((products) => {
       this.homePageProductList = products;
-
-      console.log(this.homePageProductList);
     });
 
     this.productService.getFeatureProducts().subscribe((products) => {
       this.featureProductList = products;
-      console.log(this.featureProductList);
     });
   }
 }
