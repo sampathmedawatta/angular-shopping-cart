@@ -11,8 +11,9 @@ import { WishlistService } from 'src/app/services/wishlist.service';
 })
 export class ProductItemComponent implements OnInit {
   @Input() productItem: Product;
-  item: any = {};
   @Input() addedToWishlist: boolean;
+  item: any = {};
+
   constructor(
     private messengerService: MessengerService,
     private modalService: NgbModal,

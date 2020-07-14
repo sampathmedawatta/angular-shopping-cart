@@ -24,6 +24,7 @@ import { PageNotFoundComponent } from './components/shared/page-not-found/page-n
 import { CheckoutComponent } from './components/shopping-cart/checkout/checkout.component';
 import { CheckoutItemListComponent } from './components/shopping-cart/checkout/checkout-item-list/checkout-item-list.component';
 import { ProductCategoryComponent } from './components/shopping-cart/product-category/product-category.component';
+import { ProductQtyComponent } from './components/shopping-cart/product-list/product-qty/product-qty.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ProductCategoryComponent } from './components/shopping-cart/product-cat
     CheckoutComponent,
     CheckoutItemListComponent,
     ProductCategoryComponent,
+    ProductQtyComponent,
   ],
   imports: [
     BrowserModule,

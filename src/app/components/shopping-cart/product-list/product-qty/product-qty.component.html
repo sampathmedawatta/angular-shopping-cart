@@ -1,0 +1,15 @@
+<form #qtyform="ngForm">
+  <p class="card-text product-text">
+    Qty :
+    <input
+      type="number"
+      min="1"
+      max="10"
+      value="{{ item.qty }}"
+      class="product-qty-btn"
+      name="qty"
+      #qty="ngModel"
+      [(ngModel)]="item.qty"
+    />
+  </p>
+</form>
