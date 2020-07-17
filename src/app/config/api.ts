@@ -9,3 +9,7 @@ export const homePageProductsUrl = baseUrl + '/Product/HomePageProducts';
 export const productsByCategoryUrl = baseUrl + '/Product/ProductsByCategory';
 
 export const categoryUrl = baseUrl + '/Category';
+
+export const loginUrl = baseUrl + '/Login';
+export const registerUrl = baseUrl + '/Register';
+export const userDetailsUrl = baseUrl + '/UserProfile';

@@ -4,9 +4,19 @@
   <h5 class="my-0 mr-md-auto font-weight-normal"><app-header></app-header></h5>
 
   <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" [routerLink]="['/order-history']">Order History</a>
-    <a class="p-2 text-dark" [routerLink]="['/register']">Register</a>
-    <a class="p-2 text-dark" [routerLink]="['/login']">Log In</a>
+    <a
+      class="p-2 text-dark"
+      [routerLink]="['/order-history']"
+      *ngIf="isLoggedIn"
+      >Order History</a
+    >
+    <a class="p-2 text-dark" [routerLink]="['/register']" *ngIf="!isLoggedIn"
+      >Register</a
+    >
+    <a class="p-2 text-dark" [routerLink]="['/login']" *ngIf="!isLoggedIn"
+      >Log In</a
+    >
+    <a class="p-2 text-dark" *ngIf="isLoggedIn" (click)="logout()">Log Out</a>
     <a class="p-2 text-dark" href="#">Wishlist ({{ wishlist.length }})</a>
     <a class="p-2 text-dark" [routerLink]="['/checkout']"
       >Shopping Cart ({{ cartItems.length }})</a
