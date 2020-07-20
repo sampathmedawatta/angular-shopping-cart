@@ -12,21 +12,24 @@ import {} from 'src/app/config/api';
 
 import { from } from 'rxjs';
 import { Guid } from 'guid-typescript';
+import { OperationResult } from '../models/operation-result';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  getProductsByCategory(categoryName: string): Observable<Product[]> {
-    return this.http.get<Product[]>(productsByCategoryUrl + '/' + categoryName);
+  getProductsByCategory(categoryName: string): Observable<OperationResult> {
+    return this.http.get<OperationResult>(
+      productsByCategoryUrl + '/' + categoryName
+    );
   }
 
-  getFeatureProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(featureProductsUrl);
+  getFeatureProducts(): Observable<OperationResult> {
+    return this.http.get<OperationResult>(featureProductsUrl);
   }
 
-  getHomePageProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(homePageProductsUrl);
+  getHomePageProducts(): Observable<OperationResult> {
+    return this.http.get<OperationResult>(homePageProductsUrl);
   }
 }

@@ -3,6 +3,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { Guid } from 'guid-typescript';
+import { OperationResult } from 'src/app/models/operation-result';
 
 @Component({
   selector: 'app-product-list',
@@ -19,13 +20,17 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productService.getHomePageProducts().subscribe((products) => {
-      this.homePageProductList = products;
-    });
+    this.productService
+      .getHomePageProducts()
+      .subscribe((result: OperationResult) => {
+        this.homePageProductList = result.data;
+      });
 
-    this.productService.getFeatureProducts().subscribe((products) => {
-      this.featureProductList = products;
-    });
+    this.productService
+      .getFeatureProducts()
+      .subscribe((result: OperationResult) => {
+        this.featureProductList = result.data;
+      });
 
     this.wishlist = this.wishlistService.getWishlist();
   }
