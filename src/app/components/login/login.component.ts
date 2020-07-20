@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  model: Auth;
+  formModel = {
+    email: '',
+    password: '',
+  };
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -19,9 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.model);
-
-    this.authService.login(this.model).subscribe({
+    this.authService.login(this.formModel).subscribe({
       next: (data: any) => {
         //save token
         //localStorage.setItem('token', data.token);
