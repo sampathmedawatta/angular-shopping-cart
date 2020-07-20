@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
 import { Category } from 'src/app/models/category';
+import { OperationResult } from 'src/app/models/operation-result';
 
 @Component({
   selector: 'app-nav-category',
@@ -9,11 +10,14 @@ import { Category } from 'src/app/models/category';
 })
 export class NavCategoryComponent implements OnInit {
   categoryList: Category[] = [];
+
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.categoryService.getCategoryList().subscribe((categories) => {
-      this.categoryList = categories;
-    });
+    this.categoryService
+      .getCategoryList()
+      .subscribe((result: OperationResult) => {
+        this.categoryList = result.data;
+      });
   }
 }

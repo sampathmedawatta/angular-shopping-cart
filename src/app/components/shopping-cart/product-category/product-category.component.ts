@@ -4,6 +4,7 @@ import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { Guid } from 'guid-typescript';
+import { OperationResult } from 'src/app/models/operation-result';
 
 @Component({
   selector: 'app-product-category',
@@ -36,8 +37,8 @@ export class ProductCategoryComponent implements OnInit {
   loadProductList(categoryName: string) {
     this.productService
       .getProductsByCategory(categoryName)
-      .subscribe((products) => {
-        this.productList = products;
+      .subscribe((result: OperationResult) => {
+        this.productList = result.data;
       });
   }
 }
