@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { Register } from 'src/app/models/register';
 
 function characterValidator(control) {
   if (control.hasError('required')) return null;
@@ -30,7 +32,12 @@ function passwordMatchValidator(form) {
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  constructor(private builder: FormBuilder, private router: Router) {}
+  userData: Register;
+  constructor(
+    private builder: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('token') != null) {
@@ -57,6 +64,10 @@ export class RegisterComponent implements OnInit {
     );
   }
   register() {
-    console.log(this.registerForm.value);
+    this.userData = this.registerForm.value;
+
+    this.authService.register(this.userData).subscribe((data) => {
+      this.registerForm.reset();
+    });
   }
 }
