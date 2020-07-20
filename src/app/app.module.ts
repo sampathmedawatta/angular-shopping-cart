@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -24,6 +24,7 @@ import { PageNotFoundComponent } from './components/shared/page-not-found/page-n
 import { CheckoutComponent } from './components/shopping-cart/checkout/checkout.component';
 import { CheckoutItemListComponent } from './components/shopping-cart/checkout/checkout-item-list/checkout-item-list.component';
 import { ProductCategoryComponent } from './components/shopping-cart/product-category/product-category.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,13 @@ import { ProductCategoryComponent } from './components/shopping-cart/product-cat
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

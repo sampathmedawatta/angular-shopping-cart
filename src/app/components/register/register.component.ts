@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 function characterValidator(control) {
   if (control.hasError('required')) return null;
@@ -29,9 +30,12 @@ function passwordMatchValidator(form) {
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  constructor(private builder: FormBuilder) {}
+  constructor(private builder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('token') != null) {
+      this.router.navigateByUrl('/shop');
+    }
     this.buildForm();
   }
 
