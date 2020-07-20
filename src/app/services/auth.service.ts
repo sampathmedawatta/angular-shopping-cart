@@ -18,6 +18,7 @@ export class AuthService {
       headers: this.headers,
     });
   }
+
   register(register: User): Observable<User> {
     const body = JSON.stringify(register);
 

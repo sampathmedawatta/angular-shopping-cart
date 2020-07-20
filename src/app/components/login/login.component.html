@@ -38,7 +38,7 @@
               [ngClass]="{ 'is-invalid': email.touched && email.invalid }"
               name="email"
               #email="ngModel"
-              [(ngModel)]="model.email"
+              [(ngModel)]="formModel.email"
               required
             />
             <span class="invalid-feedback">Email can't be blank.</span>
@@ -52,7 +52,7 @@
               [ngClass]="{ 'is-invalid': password.touched && password.invalid }"
               name="password"
               #password="ngModel"
-              [(ngModel)]="model.password"
+              [(ngModel)]="formModel.password"
               required
             />
             <span class="invalid-feedback">Password can't be blank.</span>
