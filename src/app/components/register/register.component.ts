@@ -33,6 +33,7 @@ function passwordMatchValidator(form) {
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   userData: Register;
+  isUserRegistered: boolean = false;
   constructor(
     private builder: FormBuilder,
     private router: Router,
@@ -67,7 +68,12 @@ export class RegisterComponent implements OnInit {
     this.userData = this.registerForm.value;
 
     this.authService.register(this.userData).subscribe((data) => {
+      this.isUserRegistered = true;
       this.registerForm.reset();
     });
+  }
+
+  handlerCloseAllert() {
+    this.router.navigateByUrl('/login');
   }
 }

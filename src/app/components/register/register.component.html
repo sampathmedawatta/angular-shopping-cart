@@ -4,6 +4,23 @@
       <div class="card-header text-center">
         <h4>Register</h4>
       </div>
+      <div
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+        *ngIf="isUserRegistered"
+      >
+        <strong>Welcome!!</strong> Your user account has been created
+        succesfully. Please login...
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+          (click)="handlerCloseAllert()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <form [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="card-body">
           <div class="form-group">
