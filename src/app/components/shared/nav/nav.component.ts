@@ -15,7 +15,6 @@ import { User } from 'src/app/models/user';
 export class NavComponent implements OnInit {
   cartItems = [];
   wishlist = [];
-  userProfile: User;
 
   isLoggedIn: boolean = false;
   constructor(
@@ -27,15 +26,14 @@ export class NavComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem('token') != null) {
-      this.isLoggedIn = true;
+    this.checkAuthantication();
 
-      //TODO place user details
-      this.authService.getUserProfile().subscribe((user) => {
-        this.userProfile = user;
-        console.log(this.userProfile);
-      });
-    }
+    this.messengerService.getMsgUserLogin().subscribe(() => {
+      this.checkAuthantication();
+    });
+    this.messengerService.getMsgUserLogout().subscribe(() => {
+      this.checkAuthantication();
+    });
 
     this.messengerService
       .getMsgAddProductToCart()
@@ -53,8 +51,19 @@ export class NavComponent implements OnInit {
     this.wishlist = this.wishlistService.getWishlist();
   }
 
+  checkAuthantication() {
+    if (localStorage.getItem('token') != null) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+  }
+
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    this.messengerService.sendMsgUserLogout();
     this.router.navigate(['/login']);
   }
 }

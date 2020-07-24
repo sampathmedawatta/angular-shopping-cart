@@ -38,4 +38,20 @@ export class MessengerService {
   getMsgAddToWishList() {
     return this.subject.asObservable();
   }
+
+  sendMsgUserLogin() {
+    this.subject.next();
+  }
+
+  getMsgUserLogin() {
+    return this.subject.asObservable();
+  }
+
+  sendMsgUserLogout() {
+    this.subject.next();
+  }
+
+  getMsgUserLogout() {
+    return this.subject.asObservable();
+  }
 }

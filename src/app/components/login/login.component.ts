@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Auth } from 'src/app/models/auth';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { MessengerService } from 'src/app/services/messenger.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,14 @@ export class LoginComponent implements OnInit {
     email: '',
     password: '',
   };
-  constructor(private authService: AuthService, private router: Router) {}
+
+  userProfile: User;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private messengerService: MessengerService
+  ) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('token') != null) {
@@ -24,8 +33,14 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.formModel).subscribe({
       next: (data: any) => {
-        //save token
-        //localStorage.setItem('token', data.token);
+        localStorage.setItem('token', data.token);
+
+        this.authService.getUserProfile().subscribe((user) => {
+          this.userProfile = user;
+          localStorage.setItem('user', JSON.stringify(this.userProfile));
+        });
+
+        this.messengerService.sendMsgUserLogin();
         this.router.navigateByUrl('/shop');
       },
       error: (error) => {
