@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { MessengerService } from 'src/app/services/messenger.service';
 import { CartItem } from 'src/app/models/cart-item';
@@ -11,8 +11,6 @@ import { CartItem } from 'src/app/models/cart-item';
 export class CheckoutItemListComponent implements OnInit {
   cart: any = {};
   cartTotal = 0;
-  Tax = 0;
-  subTotal = 0;
 
   constructor(
     private cartService: CartService,
@@ -22,6 +20,8 @@ export class CheckoutItemListComponent implements OnInit {
   ngOnInit(): void {
     this.handleSubscription();
     this.loadCartITems();
+
+    this.messengerService.sendMsgCartTotal();
   }
 
   handleSubscription() {
@@ -38,6 +38,7 @@ export class CheckoutItemListComponent implements OnInit {
   handlerRemoveCartItem(cartItem: CartItem) {
     this.cartService.removeCartItem(cartItem);
     this.messengerService.sendMsgRemoveProductFromCart();
+    this.messengerService.sendMsgCartTotal();
   }
 
   setItemQty(cartItem: CartItem) {
@@ -47,5 +48,6 @@ export class CheckoutItemListComponent implements OnInit {
   updateItemQry(cartItem: CartItem) {
     this.cartService.updateCartItemQty(cartItem);
     this.messengerService.sendMsgUpdateProductInCart();
+    this.messengerService.sendMsgCartTotal();
   }
 }

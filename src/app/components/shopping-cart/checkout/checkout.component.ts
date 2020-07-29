@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-checkout',
@@ -6,11 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-  cart: any = {};
-  cartTotal = 0;
-  Tax = 0;
-  subTotal = 0;
-
   constructor() {}
 
   ngOnInit(): void {}

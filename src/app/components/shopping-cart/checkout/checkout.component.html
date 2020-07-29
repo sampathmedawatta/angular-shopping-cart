@@ -6,77 +6,10 @@
 
     <div class="row p-4">
       <div class="col-md-6">
-        <div class="card-header text-center">
-          <h4>Delivery Address</h4>
-        </div>
-        <form>
-          <div class="card-body">
-            <div class="form-group">
-              <label for="addressLine1">Address Line 1</label>
-              <input type="text" id="addressLine1" class="form-control" />
-            </div>
-            <div class="form-group">
-              <label for="addressLine2">Address Line 2</label>
-              <input type="text" id="addressLine2" class="form-control" />
-            </div>
-            <div class="form-group">
-              <label for="state">State</label>
-              <input type="text" id="state" class="form-control" />
-            </div>
-          </div>
-        </form>
+        <app-delivery-details></app-delivery-details>
       </div>
       <div class="col-md-6">
-        <table class="table">
-          <tbody>
-            <tr>
-              <td>Total</td>
-              <td class="text-right">{{ cartTotal | currency: "LKR " }}</td>
-            </tr>
-            <tr>
-              <td>Tax</td>
-              <td class="text-right">{{ Tax | currency: "LKR " }}</td>
-            </tr>
-            <tr>
-              <td>Sub Total</td>
-              <td class="text-right">{{ subTotal | currency: "LKR " }}</td>
-            </tr>
-            <tr>
-              <td>Payment Method</td>
-              <td class="text-right">
-                <div class="text-right">
-                  <form>
-                    <div>
-                      <select
-                        class="custom-select d-block w-100"
-                        id="country"
-                        required=""
-                      >
-                        <option value="">Credit Card (Visa)</option>
-                        <option>Pay at Delivery</option>
-                      </select>
-                      <div class="invalid-feedback">
-                        Please select a valid country.
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>I agree with the terms and conditions</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td class="text-right">
-                <button class="btn btn-sm btn-outline-primary btn-block">
-                  Checkout
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <app-payment-summary></app-payment-summary>
       </div>
     </div>
   </div>
