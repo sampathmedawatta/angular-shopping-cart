@@ -27,7 +27,7 @@ export class AuthService {
     });
   }
 
-  getUserProfile(): Observable<User> {
-    return this.http.get<User>(userDetailsUrl);
+  getUserProfile(): Observable<any> {
+    return this.http.get<any>(userDetailsUrl);
   }
 }

@@ -31,6 +31,14 @@ export class MessengerService {
     return this.subject.asObservable();
   }
 
+  sendMsgCartTotal() {
+    this.subject.next();
+  }
+
+  getMsgCartTotal() {
+    return this.subject.asObservable();
+  }
+
   sendMsgAddToWishList() {
     this.subject.next();
   }

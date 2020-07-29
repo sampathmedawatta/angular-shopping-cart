@@ -27,7 +27,13 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkAuthantication();
+    this.handleSubscription();
 
+    this.cartItems = this.cartService.getCartItems();
+    this.wishlist = this.wishlistService.getWishlist();
+  }
+
+  handleSubscription() {
     this.messengerService.getMsgUserLogin().subscribe(() => {
       this.checkAuthantication();
     });
@@ -35,22 +41,14 @@ export class NavComponent implements OnInit {
       this.checkAuthantication();
     });
 
-    this.messengerService
-      .getMsgAddProductToCart()
-      .subscribe((product: Product) => {
-        this.cartItems = this.cartService.getCartItems();
-      });
+    this.messengerService.getMsgAddProductToCart().subscribe(() => {
+      this.cartItems = this.cartService.getCartItems();
+    });
 
-    this.messengerService
-      .getMsgAddToWishList()
-      .subscribe((product: Product) => {
-        this.wishlist = this.wishlistService.getWishlist();
-      });
-
-    this.cartItems = this.cartService.getCartItems();
-    this.wishlist = this.wishlistService.getWishlist();
+    this.messengerService.getMsgAddToWishList().subscribe(() => {
+      this.wishlist = this.wishlistService.getWishlist();
+    });
   }
-
   checkAuthantication() {
     if (localStorage.getItem('token') != null) {
       this.isLoggedIn = true;
