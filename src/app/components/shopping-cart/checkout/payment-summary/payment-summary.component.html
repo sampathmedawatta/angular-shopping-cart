@@ -19,28 +19,34 @@
       </tr>
 
       <tr>
-        <td class="text-left">Payment Method</td>
-        <td class="text-right">
-          <div class="text-right">
-            <div>
+        <td colspan="2">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="payment-method">Payment Method</label>
               <select
                 class="custom-select d-block w-auto"
-                id="country"
+                id="payment-method"
                 required=""
               >
-                <option value="">Credit Card (Visa)</option>
-                <option>Pay at Delivery</option>
+                <option value="cc">Credit Card (Visa)</option>
+                <option value="pd">Pay at Delivery</option>
               </select>
-              <div class="invalid-feedback">
-                Please select a valid country.
-              </div>
             </div>
           </div>
         </td>
       </tr>
       <tr>
         <td colspan="2" class="text-left">
-          I agree with the terms and conditions
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="terms-conditions"
+            />
+            <label class="custom-control-label" for="terms-conditions"
+              >I agree with the terms and conditions</label
+            >
+          </div>
         </td>
       </tr>
       <tr>
