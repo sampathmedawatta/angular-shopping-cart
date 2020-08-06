@@ -8,17 +8,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./delivery-details.component.css'],
 })
 export class DeliveryDetailsComponent implements OnInit {
-  user: User;
+  userModel: User = {
+    Email: '',
+    FirstName: '',
+    LastName: '',
+    AddressLine1: '',
+    AddressLine2: '',
+    State: '',
+    PostCode: '',
+  };
+
+  paymentModel = {
+    paymentMethod: 'cc',
+    isAggreed: '',
+  };
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     let user = localStorage.getItem('user');
     if (user) {
-      //TODO load user details to delivert details
-      this.user = JSON.parse(user);
-    } else {
-      //TODO handle user login
-      //this.router.navigateByUrl('/login');
+      this.userModel = JSON.parse(user);
     }
+  }
+
+  checkout() {
+    console.log(this.userModel);
+    console.log(this.paymentModel);
   }
 }

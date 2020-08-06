@@ -58,6 +58,10 @@ export class RegisterComponent implements OnInit {
           [Validators.required, characterValidator, Validators.minLength(6)],
         ],
         confirmPassword: '',
+        addressLine1: ['', Validators.required],
+        addressLine2: ['', Validators.required],
+        state: ['', Validators.required],
+        postCode: ['', Validators.required],
       },
       {
         validators: passwordMatchValidator,

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-4 offset-md-4">
+  <div class="col-md-6 offset-md-3">
     <div class="card">
       <div class="card-header text-center">
         <h4>Register</h4>
@@ -23,97 +23,165 @@
       </div>
       <form [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="card-body">
-          <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input
-              type="text"
-              id="firstName"
-              class="form-control"
-              [ngClass]="{
-                'is-invalid':
-                  registerForm.get('firstName').touched &&
-                  registerForm.get('firstName').invalid
-              }"
-              formControlName="firstName"
-            />
-            <span class="invalid-feedback">First Name can't be blank.</span>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                formControlName="firstName"
+                required
+              />
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lastName">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                formControlName="lastName"
+                required
+              />
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input
-              type="text"
-              id="lastName"
-              class="form-control"
-              formControlName="lastName"
-              [ngClass]="{
-                'is-invalid':
-                  registerForm.get('lastName').touched &&
-                  registerForm.get('lastName').invalid
-              }"
-            />
-            <span class="invalid-feedback">Last Name can't be blank.</span>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
+          <div class="mb-3">
+            <label for="email">Email </label>
             <input
               type="email"
+              class="form-control"
               id="email"
-              class="form-control"
+              placeholder="you@example.com"
               formControlName="email"
-              [ngClass]="{
-                'is-invalid':
-                  registerForm.get('email').touched &&
-                  registerForm.get('email').invalid
-              }"
+              required
             />
-            <span class="invalid-feedback">
-              <span *ngIf="registerForm.get('email').hasError('required')"
-                >Email can't be blank.</span
-              >
-              <span *ngIf="registerForm.get('email').hasError('email')"
-                >Email must be valid.</span
-              >
-            </span>
+            <small class="text-muted"
+              >Please enter a valid email address for delivery updates.</small
+            >
+            <div class="invalid-feedback">
+              Please enter a valid email address for delivery updates.
+            </div>
           </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              class="form-control"
-              formControlName="password"
-              [ngClass]="{
-                'is-invalid':
-                  registerForm.get('password').touched &&
-                  registerForm.get('password').invalid
-              }"
-            />
-            <span class="invalid-feedback">
-              <span *ngIf="registerForm.get('password').hasError('required')"
-                >Password can't be blank.</span
-              >
-              <span *ngIf="registerForm.get('password').hasError('symbol')"
-                >Password must contain @</span
-              >
-              <span *ngIf="registerForm.get('password').hasError('minlength')"
-                >Password must contain minimum 6 characters</span
-              >
-            </span>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="addressLine1">Address Line 1</label>
+              <input
+                type="text"
+                id="addressLine1"
+                class="form-control"
+                formControlName="addressLine1"
+                required
+              />
+
+              <div class="invalid-feedback">
+                Address Line 1 is required
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="addressLine2">Address Line 2</label>
+              <input
+                type="text"
+                id="addressLine2"
+                class="form-control"
+                formControlName="addressLine2"
+                required
+              />
+              <div class="invalid-feedback">
+                Address Line 2 is required
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              class="form-control"
-              formControlName="confirmPassword"
-              [ngClass]="{
-                'is-invalid':
-                  registerForm.get('confirmPassword').touched &&
-                  registerForm.get('confirmPassword').invalid
-              }"
-            />
-            <span class="invalid-feedback">Password must match.</span>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="state">State</label>
+              <select
+                class="custom-select d-block w-100"
+                id="state"
+                formControlName="state"
+                required
+              >
+                <option value="">Choose..</option>
+                <option value="Colombo">Colombo</option>
+                <option value="Kandy">Kandy</option>
+                <option value="Galle">Galle</option>
+                <option value="Jafna">Jafna</option>
+                <option value="Matara">Matara</option>
+                <option value="Hambanthota">Hambanthota</option>
+                <option value="Rathnapura">Rathnapura</option>
+                <option value="Badulla">Badulla</option>
+              </select>
+              <div class="invalid-feedback">
+                Please provide a valid state.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="postCode">Post Code</label>
+              <input
+                type="text"
+                id="postCode"
+                class="form-control"
+                formControlName="postCode"
+                required
+              />
+              <div class="invalid-feedback">
+                Post code required.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+                [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('password').touched &&
+                    registerForm.get('password').invalid
+                }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="registerForm.get('password').hasError('required')"
+                  >Password can't be blank.</span
+                >
+                <span *ngIf="registerForm.get('password').hasError('symbol')"
+                  >Password must contain @</span
+                >
+                <span *ngIf="registerForm.get('password').hasError('minlength')"
+                  >Password must contain minimum 6 characters</span
+                >
+              </span>
+
+              <div class="invalid-feedback">
+                Password is required
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                class="form-control"
+                formControlName="confirmPassword"
+                [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('confirmPassword').touched &&
+                    registerForm.get('confirmPassword').invalid
+                }"
+              />
+              <span class="invalid-feedback">Password must match.</span>
+              <div class="invalid-feedback">
+                Confirm Password is required
+              </div>
+            </div>
           </div>
           <button
             class="btn btn-sm btn-outline-primary btn-block"

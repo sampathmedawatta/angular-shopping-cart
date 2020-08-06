@@ -1,19 +1,202 @@
 <div class="card-header text-left">
   <h4>Delivery Details</h4>
 </div>
-<form>
+<form #checkoutForm="ngForm" (ngSubmit)="checkout()">
   <div class="card-body">
-    <div class="form-group">
-      <label for="addressLine1">Address Line 1</label>
-      <input type="text" id="addressLine1" class="form-control" />
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          [ngClass]="{ 'is-invalid': firstName.touched && firstName.invalid }"
+          name="firstName"
+          #firstName="ngModel"
+          [(ngModel)]="userModel.FirstName"
+          required
+        />
+        <div class="invalid-feedback">
+          Valid first name is required.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          [ngClass]="{ 'is-invalid': lastName.touched && lastName.invalid }"
+          name="lastName"
+          #lastName="ngModel"
+          [(ngModel)]="userModel.LastName"
+          required
+        />
+
+        <div class="invalid-feedback">
+          Valid last name is required.
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="addressLine2">Address Line 2</label>
-      <input type="text" id="addressLine2" class="form-control" />
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <label for="email">Email </label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          [ngClass]="{ 'is-invalid': email.touched && email.invalid }"
+          placeholder="you@example.com"
+          name="email"
+          #email="ngModel"
+          [(ngModel)]="userModel.Email"
+          required
+        />
+        <small class="text-muted"
+          >Please enter a valid email address for delivery updates.</small
+        >
+        <div class="invalid-feedback">
+          Please enter a valid email address for delivery updates.
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="state">State</label>
-      <input type="text" id="state" class="form-control" />
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="addressLine1">Address Line 1</label>
+        <input
+          type="text"
+          id="addressLine1"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': addressLine1.touched && addressLine1.invalid
+          }"
+          name="addressLine1"
+          #addressLine1="ngModel"
+          [(ngModel)]="userModel.AddressLine1"
+          required
+        />
+
+        <div class="invalid-feedback">
+          Address Line 1 is required
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="addressLine2">Address Line 2</label>
+        <input
+          type="text"
+          id="addressLine2"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': addressLine2.touched && addressLine2.invalid
+          }"
+          name="addressLine2"
+          #addressLine2="ngModel"
+          [(ngModel)]="userModel.AddressLine2"
+          required
+        />
+        <div class="invalid-feedback">
+          Address Line 2 is required
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="state">State</label>
+        <select
+          class="custom-select d-block w-100"
+          id="state"
+          name="state"
+          [ngClass]="{
+            'is-invalid': state.touched && state.invalid
+          }"
+          #state="ngModel"
+          [(ngModel)]="userModel.State"
+          required
+        >
+          <option value="">Choose..</option>
+          <option value="Colombo">Colombo</option>
+          <option value="Kandy">Kandy</option>
+          <option value="Galle">Galle</option>
+          <option value="Jafna">Jafna</option>
+          <option value="Matara">Matara</option>
+          <option value="Hambanthota">Hambanthota</option>
+          <option value="Rathnapura">Rathnapura</option>
+          <option value="Badulla">Badulla</option>
+        </select>
+        <div class="invalid-feedback">
+          Please provide a valid state.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="postCode">Post Code</label>
+        <input
+          type="text"
+          id="postCode"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': postCode.touched && postCode.invalid
+          }"
+          name="postCode"
+          #postCode="ngModel"
+          [(ngModel)]="userModel.PostCode"
+          required
+        />
+        <div class="invalid-feedback">
+          Post code required.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-header text-left">
+    <h4>Payment Details</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <label for="paymentMethod">Payment Method</label>
+        <select
+          class="custom-select d-block w-auto"
+          id="paymentMethod"
+          name="paymentMethod"
+          [ngClass]="{
+            'is-invalid': paymentMethod.touched && paymentMethod.invalid
+          }"
+          #paymentMethod="ngModel"
+          [(ngModel)]="paymentModel.paymentMethod"
+          required
+        >
+          <option value="cc">Credit Card (Visa)</option>
+          <option value="pd">Pay at Delivery</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-md-12 mb-3 custom-control custom-control-padding custom-checkbox"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="termsConditions"
+          name="isAggreed"
+          #isAggreed="ngModel"
+          [(ngModel)]="paymentModel.isAggreed"
+          required
+        />
+        <label class="custom-control-label" for="termsConditions"
+          >I agree with the terms and conditions</label
+        >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <button
+          class="btn btn-sm btn-outline-primary btn-block"
+          [disabled]="checkoutForm.invalid"
+        >
+          Checkout
+        </button>
+      </div>
     </div>
   </div>
 </form>
