@@ -2,61 +2,19 @@
   <h4>Cart Summary</h4>
 </div>
 
-<form>
-  <table class="table">
-    <tbody>
-      <tr>
-        <td>Total</td>
-        <td class="text-right">{{ cartTotal | currency: "LKR " }}</td>
-      </tr>
-      <tr>
-        <td>Tax</td>
-        <td class="text-right">{{ Tax | currency: "LKR " }}</td>
-      </tr>
-      <tr>
-        <td>Sub Total</td>
-        <td class="text-right">{{ subTotal | currency: "LKR " }}</td>
-      </tr>
-
-      <tr>
-        <td colspan="2">
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="payment-method">Payment Method</label>
-              <select
-                class="custom-select d-block w-auto"
-                id="payment-method"
-                required=""
-              >
-                <option value="cc">Credit Card (Visa)</option>
-                <option value="pd">Pay at Delivery</option>
-              </select>
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2" class="text-left">
-          <div class="custom-control custom-checkbox">
-            <input
-              type="checkbox"
-              class="custom-control-input"
-              id="terms-conditions"
-            />
-            <label class="custom-control-label" for="terms-conditions"
-              >I agree with the terms and conditions</label
-            >
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="text-right">
-          <button class="btn btn-sm btn-outline-primary btn-block">
-            Checkout
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</form>
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Total</td>
+      <td class="text-right">{{ cartTotal | currency: "LKR " }}</td>
+    </tr>
+    <tr>
+      <td>Tax</td>
+      <td class="text-right">{{ Tax | currency: "LKR " }}</td>
+    </tr>
+    <tr>
+      <td>Sub Total</td>
+      <td class="text-right">{{ subTotal | currency: "LKR " }}</td>
+    </tr>
+  </tbody>
+</table>

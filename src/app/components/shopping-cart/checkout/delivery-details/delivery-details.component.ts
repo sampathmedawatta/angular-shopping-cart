@@ -18,6 +18,11 @@ export class DeliveryDetailsComponent implements OnInit {
     PostCode: '',
   };
 
+  paymentModel = {
+    paymentMethod: 'cc',
+    isAggreed: '',
+  };
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -25,5 +30,10 @@ export class DeliveryDetailsComponent implements OnInit {
     if (user) {
       this.userModel = JSON.parse(user);
     }
+  }
+
+  checkout() {
+    console.log(this.userModel);
+    console.log(this.paymentModel);
   }
 }
