@@ -1,0 +1,143 @@
+<ng-container *ngIf="order">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="text-left">
+        <h4>Online Shopping</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <span id="email">info@onlineshopping.com</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <span id="email">new streat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <div class="text-left">
+        <h4>Invoice</h4>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <label id="payMethod">{{ order.orderDate }}</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <label id="payMethod">{{ order.paymentMethod.name }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="text-left">
+        <h4>Bill To</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label id="firstName">{{
+              order.deliveryDetails.firstName +
+                " " +
+                order.deliveryDetails.lastName
+            }}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label id="email">{{ order.deliveryDetails.email }}</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label id="addressLine1">{{
+              order.deliveryDetails.addressLine1
+            }}</label>
+            <label id="addressLine2">{{
+              order.deliveryDetails.addressLine2
+            }}</label>
+            <label id="state">{{ order.deliveryDetails.state }}</label>
+            <label id="postCode">{{ order.deliveryDetails.postCode }}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label id="addressLine1">{{
+              order.deliveryDetails.addressLine1
+            }}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label id="addressLine2">{{
+              order.deliveryDetails.addressLine2
+            }}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label id="state">{{ order.deliveryDetails.state }}</label>
+            <label id="postCode">{{ order.deliveryDetails.postCode }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Product(s)</th>
+          <th class="text-right" scope="col">Price (LKR)</th>
+          <th class="text-right" scope="col">Qty</th>
+          <th class="text-right" scope="col">Total (LKR)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cartItem of order.orderItems">
+          <td>{{ cartItem.productName }}</td>
+          <td class="text-right">
+            {{ cartItem.price | currency: " " }}
+          </td>
+          <td class="text-right">
+            {{ cartItem.qty }}
+          </td>
+          <td class="text-right">
+            {{ cartItem.qty * cartItem.price | currency: " " }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mb-3"></div>
+    <div class="col-md-4 mb-3">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Total</td>
+            <td class="text-right">
+              {{ order.totalAmount | currency: "LKR " }}
+            </td>
+          </tr>
+          <tr>
+            <td>Tax</td>
+            <td class="text-right">{{ order.tax | currency: "LKR " }}</td>
+          </tr>
+          <tr>
+            <td>Sub Total</td>
+            <td class="text-right">{{ order.subTotal | currency: "LKR " }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>

@@ -1,19 +1,23 @@
+import { Guid } from 'guid-typescript';
+
 export class User {
-  Email: string;
-  FirstName: string;
-  LastName: string;
-  AddressLine1: string;
-  AddressLine2: string;
-  State: string;
-  PostCode: string;
+  id: Guid;
+  email: string;
+  firstName: string;
+  lastName: string;
+  addressLine1: string;
+  addressLine2: string;
+  state: string;
+  postCode: string;
 
   constructor(user: any) {
-    this.Email = user.email;
-    this.FirstName = user.firstName;
-    this.LastName = user.lastName;
-    this.AddressLine1 = user.addressLine1;
-    this.AddressLine2 = user.addressLine2;
-    this.State = user.state;
-    this.PostCode = user.postCode;
+    this.id = user.id;
+    this.email = user.email;
+    this.firstName = user.firstName;
+    this.lastName = user.lastName;
+    this.addressLine1 = user.addressLine1;
+    this.addressLine2 = user.addressLine2;
+    this.state = user.state;
+    this.postCode = user.postCode;
   }
 }

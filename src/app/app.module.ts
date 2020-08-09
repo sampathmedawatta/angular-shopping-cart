@@ -27,6 +27,7 @@ import { ProductCategoryComponent } from './components/shopping-cart/product-cat
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { DeliveryDetailsComponent } from './components/shopping-cart/checkout/delivery-details/delivery-details.component';
 import { PaymentSummaryComponent } from './components/shopping-cart/checkout/payment-summary/payment-summary.component';
+import { OrderConfirmationComponent } from './components/shopping-cart/checkout/order-confirmation/order-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { PaymentSummaryComponent } from './components/shopping-cart/checkout/pay
     ProductCategoryComponent,
     DeliveryDetailsComponent,
     PaymentSummaryComponent,
+    OrderConfirmationComponent,
   ],
   imports: [
     BrowserModule,

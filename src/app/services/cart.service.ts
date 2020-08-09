@@ -8,6 +8,8 @@ import { Product } from '../models/product';
 export class CartService {
   locatCartItems: CartItem[] = [];
   cartTotal = 0;
+  tax = 0;
+  taxRate = 0.1;
 
   constructor() {}
 
@@ -54,7 +56,9 @@ export class CartService {
     this.setLocalCart();
   }
 
-  checkProductIsExist() {}
+  checkProductIsExist() {
+    //TODO check product availability befor checkout
+  }
 
   getLocalCart() {
     let cart = localStorage.getItem('cart');
@@ -85,5 +89,14 @@ export class CartService {
       this.cartTotal += item.qty * item.price;
     });
     return this.cartTotal;
+  }
+
+  calculateTax(cartTotal: number) {
+    this.tax = cartTotal * this.taxRate;
+    return this.tax;
+  }
+
+  calculateSubtotal(cartTotal: number, tax: number) {
+    return cartTotal + tax;
   }
 }

@@ -32,8 +32,10 @@ export class PaymentSummaryComponent implements OnInit {
   loadCartITems() {
     this.cart = this.cartService.getCartItems();
     this.cartTotal = this.cartService.calculateCartTotal(this.cart);
-
-    this.Tax = this.cartTotal * 0.1;
-    this.subTotal = this.cartTotal + this.Tax;
+    this.Tax = this.cartService.calculateTax(this.cartTotal);
+    this.subTotal = this.cartService.calculateSubtotal(
+      this.cartTotal,
+      this.Tax
+    );
   }
 }
