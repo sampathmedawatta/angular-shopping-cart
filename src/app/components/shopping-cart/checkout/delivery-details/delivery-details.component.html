@@ -13,7 +13,7 @@
           [ngClass]="{ 'is-invalid': firstName.touched && firstName.invalid }"
           name="firstName"
           #firstName="ngModel"
-          [(ngModel)]="userModel.FirstName"
+          [(ngModel)]="userModel.firstName"
           required
         />
         <div class="invalid-feedback">
@@ -29,7 +29,7 @@
           [ngClass]="{ 'is-invalid': lastName.touched && lastName.invalid }"
           name="lastName"
           #lastName="ngModel"
-          [(ngModel)]="userModel.LastName"
+          [(ngModel)]="userModel.lastName"
           required
         />
 
@@ -49,7 +49,7 @@
           placeholder="you@example.com"
           name="email"
           #email="ngModel"
-          [(ngModel)]="userModel.Email"
+          [(ngModel)]="userModel.email"
           required
         />
         <small class="text-muted"
@@ -72,7 +72,7 @@
           }"
           name="addressLine1"
           #addressLine1="ngModel"
-          [(ngModel)]="userModel.AddressLine1"
+          [(ngModel)]="userModel.addressLine1"
           required
         />
 
@@ -91,7 +91,7 @@
           }"
           name="addressLine2"
           #addressLine2="ngModel"
-          [(ngModel)]="userModel.AddressLine2"
+          [(ngModel)]="userModel.addressLine2"
           required
         />
         <div class="invalid-feedback">
@@ -110,7 +110,7 @@
             'is-invalid': state.touched && state.invalid
           }"
           #state="ngModel"
-          [(ngModel)]="userModel.State"
+          [(ngModel)]="userModel.state"
           required
         >
           <option value="">Choose..</option>
@@ -138,7 +138,7 @@
           }"
           name="postCode"
           #postCode="ngModel"
-          [(ngModel)]="userModel.PostCode"
+          [(ngModel)]="userModel.postCode"
           required
         />
         <div class="invalid-feedback">

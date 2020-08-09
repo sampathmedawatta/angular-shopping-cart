@@ -25,14 +25,14 @@ export class DeliveryDetailsComponent implements OnInit {
   };
 
   userModel: User = {
-    Id: null,
-    Email: '',
-    FirstName: '',
-    LastName: '',
-    AddressLine1: '',
-    AddressLine2: '',
-    State: '',
-    PostCode: '',
+    id: null,
+    email: '',
+    firstName: '',
+    lastName: '',
+    addressLine1: '',
+    addressLine2: '',
+    state: '',
+    postCode: '',
   };
 
   //TODO load payment method from API

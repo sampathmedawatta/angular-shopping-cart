@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { OrderService } from 'src/app/services/order.service';
 import { OperationResult } from 'src/app/models/operation-result';
+import { User } from 'src/app/models/user';
+import { PaymentMethod } from 'src/app/models/payment-method';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -11,8 +13,39 @@ import { OperationResult } from 'src/app/models/operation-result';
   styleUrls: ['./order-confirmation.component.css'],
 })
 export class OrderConfirmationComponent implements OnInit {
-  order = Order;
+  deliveryDetails: User = {
+    id: null,
+    email: '',
+    firstName: '',
+    lastName: '',
+    addressLine1: '',
+    addressLine2: '',
+    state: '',
+    postCode: '',
+  };
+
+  paymentMethod: PaymentMethod = {
+    id: null,
+    name: '',
+    description: '',
+  };
+
+  orderItems: any = [];
+
+  order: Order = {
+    totalAmount: 0,
+    subTotal: 0,
+    tax: 0,
+    id: null,
+    deliveryDetails: this.deliveryDetails,
+    orderItems: this.orderItems,
+    paymentMethodId: null,
+    paymentMethod: this.paymentMethod,
+    orderDate: null,
+  };
+
   orderId: Guid;
+
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService
@@ -30,6 +63,7 @@ export class OrderConfirmationComponent implements OnInit {
       .getOrderById(this.orderId)
       .subscribe((result: OperationResult) => {
         this.order = result.data;
+        this.deliveryDetails = result.data.deliveryDetails;
       });
 
     // this.orderService.getOrderById(this.orderId).subscribe({
