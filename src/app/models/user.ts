@@ -1,4 +1,7 @@
+import { Guid } from 'guid-typescript';
+
 export class User {
+  Id: Guid;
   Email: string;
   FirstName: string;
   LastName: string;
@@ -8,6 +11,7 @@ export class User {
   PostCode: string;
 
   constructor(user: any) {
+    this.Id = user.id;
     this.Email = user.email;
     this.FirstName = user.firstName;
     this.LastName = user.lastName;

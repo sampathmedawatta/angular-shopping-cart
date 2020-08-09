@@ -8,6 +8,7 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
 import { CheckoutComponent } from './components/shopping-cart/checkout/checkout.component';
 import { ProductCategoryComponent } from './components/shopping-cart/product-category/product-category.component';
 import { AuthGuard } from './auth/auth.guard';
+import { OrderConfirmationComponent } from './components/shopping-cart/checkout/order-confirmation/order-confirmation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/shop', pathMatch: 'full' },
@@ -20,6 +21,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'checkout', component: CheckoutComponent },
+  {
+    path: 'checkout/order-confirmation/:id',
+    component: OrderConfirmationComponent,
+  },
   { path: 'product-category/:name', component: ProductCategoryComponent },
   { path: '**', component: PageNotFoundComponent },
 

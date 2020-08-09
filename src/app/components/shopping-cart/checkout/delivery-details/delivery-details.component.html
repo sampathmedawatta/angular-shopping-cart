@@ -153,20 +153,17 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-12 mb-3">
-        <label for="paymentMethod">Payment Method</label>
+        <label for="payMethod">Payment Method</label>
         <select
+          id="payMethod"
+          name="payMethod"
           class="custom-select d-block w-auto"
-          id="paymentMethod"
-          name="paymentMethod"
-          [ngClass]="{
-            'is-invalid': paymentMethod.touched && paymentMethod.invalid
-          }"
-          #paymentMethod="ngModel"
-          [(ngModel)]="paymentModel.paymentMethod"
-          required
+          #payMethod="ngModel"
+          [(ngModel)]="paymentMethod"
         >
-          <option value="cc">Credit Card (Visa)</option>
-          <option value="pd">Pay at Delivery</option>
+          <option [value]="item.id" *ngFor="let item of paymentMethodList">
+            {{ item.name }}
+          </option>
         </select>
       </div>
     </div>
@@ -177,13 +174,13 @@
         <input
           type="checkbox"
           class="custom-control-input"
-          id="termsConditions"
+          id="isAggreed"
           name="isAggreed"
           #isAggreed="ngModel"
-          [(ngModel)]="paymentModel.isAggreed"
+          [(ngModel)]="termsConditions.isAggreed"
           required
         />
-        <label class="custom-control-label" for="termsConditions"
+        <label class="custom-control-label" for="isAggreed"
           >I agree with the terms and conditions</label
         >
       </div>

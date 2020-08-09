@@ -1,0 +1,53 @@
+<div class="card-header text-left">
+  <h4>Delivery Details</h4>
+</div>
+
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="firstName">First Name : </label>
+      <label id="firstName">{{ order.deliveryDetails.firstName }}</label>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="lastName">Last Name : </label>
+      <label id="lastName">{{ order.deliveryDetails.lastName }}</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mb-3">
+      <label for="email">Email : </label>
+      <label id="email">{{ order.deliveryDetails.email }}</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="addressLine1">Address Line 1 : </label>
+      <label id="addressLine1">{{ order.deliveryDetails.addressLine1 }}</label>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="addressLine2">Address Line 2 : </label>
+      <label id="addressLine2">{{ order.deliveryDetails.addressLine2 }}</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="state">State : </label>
+      <label id="state">{{ order.deliveryDetails.state }}</label>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="postCode">Post Code : </label>
+      <label id="postCode">{{ order.deliveryDetails.postCode }}</label>
+    </div>
+  </div>
+</div>
+<div class="card-header text-left">
+  <h4>Payment Details</h4>
+</div>
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-12 mb-3">
+      <label for="payMethod">Payment Method : </label>
+      <label id="payMethod">{{ order.paymentMethod.name }}</label>
+    </div>
+  </div>
+</div>
