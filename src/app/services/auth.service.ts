@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { loginUrl, registerUrl, userDetailsUrl } from '../config/api';
 import { Observable } from 'rxjs';
 import { Register } from '../models/register';
+import { OperationResult } from '../models/operation-result';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +13,10 @@ export class AuthService {
   headers = { 'content-type': 'application/json' };
   constructor(private http: HttpClient) {}
 
-  login(auth: Auth): Observable<any> {
+  login(auth: Auth): Observable<OperationResult> {
     const body = JSON.stringify(auth);
 
-    return this.http.post<any>(loginUrl, body, {
+    return this.http.post<OperationResult>(loginUrl, body, {
       headers: this.headers,
     });
   }
