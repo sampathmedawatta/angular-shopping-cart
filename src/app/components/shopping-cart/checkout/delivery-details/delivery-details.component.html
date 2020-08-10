@@ -194,6 +194,13 @@
           Checkout
         </button>
       </div>
+      <div
+        class="col-md-12 mb-3 alert alert-danger"
+        role="alert"
+        *ngIf="isErrored"
+      >
+        {{ errorMessage }}
+      </div>
     </div>
   </div>
 </form>

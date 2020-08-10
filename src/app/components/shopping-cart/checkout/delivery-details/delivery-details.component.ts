@@ -53,6 +53,9 @@ export class DeliveryDetailsComponent implements OnInit {
     isAggreed: '',
   };
 
+  isErrored: boolean = false;
+  errorMessage: string = '';
+
   constructor(
     private router: Router,
     private cartService: CartService,
@@ -68,14 +71,24 @@ export class DeliveryDetailsComponent implements OnInit {
 
   checkout() {
     this.setPaymentDetails();
-    this.order = new Order(
-      this.orderDetails,
-      this.userModel,
-      this.orderItems,
-      this.paymentMethod
-    );
+    if (this.orderDetails.totalAmount > 0) {
+      this.order = new Order(
+        this.orderDetails,
+        this.userModel,
+        this.orderItems,
+        this.paymentMethod
+      );
+      this.saveOrder(this.order);
+    } else {
+      //TODO show error order amount can not be zero
+      this.isErrored = true;
+      this.errorMessage =
+        'Order amount can not be zero! Please add items to cart.';
+    }
+  }
 
-    this.orderService.placeOrder(this.order).subscribe({
+  saveOrder(order: Order) {
+    this.orderService.placeOrder(order).subscribe({
       next: (result: OperationResult) => {
         if (result.statusId == 200 && result.data != null) {
           this.router.navigateByUrl(
@@ -90,7 +103,6 @@ export class DeliveryDetailsComponent implements OnInit {
       },
     });
   }
-
   setPaymentDetails() {
     this.orderItems = this.cartService.getCartItems();
     this.orderDetails.totalAmount = this.cartService.calculateCartTotal(
