@@ -1,6 +1,9 @@
 <div class="card-header text-left">
   <h4>Shopping Cart</h4>
 </div>
+<div class="col-md-12 mb-3 alert alert-danger" role="alert" *ngIf="isErrored">
+  {{ errorMessage }}
+</div>
 <div class="cart-table cart-font-size">
   <table class="table table-striped">
     <thead>

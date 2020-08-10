@@ -11,6 +11,8 @@ import { CartItem } from 'src/app/models/cart-item';
 export class CheckoutItemListComponent implements OnInit {
   cart: any = {};
   cartTotal = 0;
+  isErrored: boolean = false;
+  errorMessage: string = '';
 
   constructor(
     private cartService: CartService,
@@ -33,6 +35,10 @@ export class CheckoutItemListComponent implements OnInit {
   loadCartITems() {
     this.cart = this.cartService.getCartItems();
     this.cartTotal = this.cartService.calculateCartTotal(this.cart);
+    if (this.cartTotal <= 0) {
+      this.isErrored = true;
+      this.errorMessage = 'Cart is empty. Please add items to cart. ';
+    }
   }
 
   handlerRemoveCartItem(cartItem: CartItem) {

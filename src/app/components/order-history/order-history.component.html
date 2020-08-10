@@ -1,1 +1,58 @@
-<p>order-history works!</p>
+<div class="card-header text-left">
+  <h4>Order History</h4>
+</div>
+<div class="cart-table cart-font-size">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">View</th>
+        <th class="text-left" scope="col">Customer Name</th>
+        <th class="text-left" scope="col">Delivery Address</th>
+        <th class="text-left" scope="col">Date</th>
+        <th class="text-left" scope="col">Payment Method</th>
+        <th class="text-right" scope="col">Amount (LKR)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let orderItem of orderList">
+        <td>
+          <button
+            class="btn btn-remove-product btn-outline-primary"
+            (click)="handlerVieworderItem(orderItem)"
+          >
+            View
+          </button>
+        </td>
+        <td>
+          {{
+            orderItem.deliveryDetails.firstName +
+              " " +
+              orderItem.deliveryDetails.firstName
+          }}
+        </td>
+        <td>
+          {{
+            orderItem.deliveryDetails.addressLine1 +
+              " " +
+              orderItem.deliveryDetails.addressLine1
+          }}
+
+          {{
+            orderItem.deliveryDetails.state +
+              " " +
+              orderItem.deliveryDetails.postCode
+          }}
+        </td>
+        <td class="text-left">
+          {{ orderItem.orderDate }}
+        </td>
+        <td class="text-left">
+          {{ orderItem.paymentMethod.name }}
+        </td>
+        <td class="text-right">
+          {{ orderItem.subTotal | currency: " " }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
