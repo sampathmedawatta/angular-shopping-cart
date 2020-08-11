@@ -4,8 +4,7 @@ export const baseUrl = environment.production
   ? 'https://localhost:44306/api'
   : 'https://localhost:44306/api';
 
-export const featureProductsUrl = baseUrl + '/Product/FeatureProducts';
-export const homePageProductsUrl = baseUrl + '/Product/HomePageProducts';
+export const ProductsByType = baseUrl + '/Product/ProductsByType';
 export const productsByCategoryUrl = baseUrl + '/Product/ProductsByCategory';
 
 export const categoryUrl = baseUrl + '/Category';

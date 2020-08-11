@@ -2,11 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product';
-import {
-  featureProductsUrl,
-  homePageProductsUrl,
-  productsByCategoryUrl,
-} from 'src/app/config/api';
+import { ProductsByType, productsByCategoryUrl } from 'src/app/config/api';
 
 import {} from 'src/app/config/api';
 
@@ -26,10 +22,10 @@ export class ProductService {
   }
 
   getFeatureProducts(): Observable<OperationResult> {
-    return this.http.get<OperationResult>(featureProductsUrl);
+    return this.http.get<OperationResult>(ProductsByType + '/FeatureProducts');
   }
 
   getHomePageProducts(): Observable<OperationResult> {
-    return this.http.get<OperationResult>(homePageProductsUrl);
+    return this.http.get<OperationResult>(ProductsByType + '/HomePageProducts');
   }
 }
