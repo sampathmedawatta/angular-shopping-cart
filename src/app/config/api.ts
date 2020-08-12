@@ -15,4 +15,4 @@ export const userDetailsUrl = baseUrl + '/User/Profile';
 
 export const orderUrl = baseUrl + '/Order';
 export const orderByIdUrl = baseUrl + '/Order';
-export const orderHistorysUrl = baseUrl + '/Order/History';
+export const orderHistoryUrl = baseUrl + '/Order/History';

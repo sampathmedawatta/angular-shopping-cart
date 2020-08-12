@@ -50,7 +50,6 @@ export class NavComponent implements OnInit {
     });
 
     this.messengerService.getMsgRemoveCart().subscribe(() => {
-      console.log('getMsgRemoveCart');
       this.cartItems = this.cartService.getCartItems();
     });
   }
@@ -64,6 +63,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
     localStorage.removeItem('user');
 
     this.messengerService.sendMsgUserLogout();

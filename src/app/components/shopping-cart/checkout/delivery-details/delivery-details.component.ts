@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
-import { OrderItem } from 'src/app/models/order-item';
-import { Order } from 'src/app/models/order';
 import { CartService } from 'src/app/services/cart.service';
+import { Order } from 'src/app/models/order';
+import { OrderItem } from 'src/app/models/order-item';
 import { OrderService } from 'src/app/services/order.service';
 import { OperationResult } from 'src/app/models/operation-result';
+import { MessengerService } from 'src/app/services/messenger.service';
 
 @Component({
   selector: 'app-delivery-details',
@@ -13,7 +14,7 @@ import { OperationResult } from 'src/app/models/operation-result';
   styleUrls: ['./delivery-details.component.css'],
 })
 export class DeliveryDetailsComponent implements OnInit {
-  orderItems: OrderItem[] = [];
+  orderItems: OrderItem[];
   order: Order;
   paymentMethod = '5771E231-BACE-44CB-80E2-2DB0802CB29F';
   orderDetails = {
@@ -59,7 +60,8 @@ export class DeliveryDetailsComponent implements OnInit {
   constructor(
     private router: Router,
     private cartService: CartService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private messengerService: MessengerService
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +85,7 @@ export class DeliveryDetailsComponent implements OnInit {
         this.orderItems,
         this.paymentMethod
       );
-      this.saveOrder(this.order);
+      this.saveOrder();
     } else {
       //TODO show error order amount can not be zero
       this.isErrored = true;
@@ -92,11 +94,12 @@ export class DeliveryDetailsComponent implements OnInit {
     }
   }
 
-  saveOrder(order: Order) {
-    this.orderService.placeOrder(order).subscribe({
+  saveOrder() {
+    this.orderService.placeOrder(this.order).subscribe({
       next: (result: OperationResult) => {
         if (result.statusId == 200 && result.data != null) {
           this.cartService.removeCart();
+          this.messengerService.sendMsgRemoveCart();
           this.router.navigateByUrl(
             '/checkout/order-confirmation/' + result.data
           );
@@ -109,6 +112,7 @@ export class DeliveryDetailsComponent implements OnInit {
       },
     });
   }
+
   setPaymentDetails() {
     this.orderItems = this.cartService.getCartItems();
     this.orderDetails.totalAmount = this.cartService.calculateCartTotal(
