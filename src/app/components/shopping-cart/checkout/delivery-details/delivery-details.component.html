@@ -1,6 +1,9 @@
 <div class="card-header text-left">
   <h4>Delivery Details</h4>
 </div>
+<div class="col-md-12 mb-3 alert alert-danger" role="alert" *ngIf="!isLoggedIn">
+  {{ loggedInErrorMessage }}
+</div>
 <form #checkoutForm="ngForm" (ngSubmit)="checkout()">
   <div class="card-body">
     <div class="row">

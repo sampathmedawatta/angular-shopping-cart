@@ -31,7 +31,6 @@ export class ProductListComponent implements OnInit {
       .subscribe((result: OperationResult) => {
         this.featureProductList = result.data;
       });
-
     this.wishlist = this.wishlistService.getWishlist();
   }
 }

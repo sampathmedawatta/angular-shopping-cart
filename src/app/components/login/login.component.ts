@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
 
         this.authService.getUserProfile().subscribe((user) => {
           this.userProfile = new User(user.data);
+
           localStorage.setItem('user', JSON.stringify(this.userProfile));
         });
 

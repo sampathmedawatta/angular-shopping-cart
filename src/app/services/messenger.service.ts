@@ -31,6 +31,14 @@ export class MessengerService {
     return this.subject.asObservable();
   }
 
+  getMsgRemoveCart() {
+    return this.subject.asObservable();
+  }
+
+  sendMsgRemoveCart() {
+    this.subject.next();
+  }
+
   sendMsgCartTotal() {
     this.subject.next();
   }

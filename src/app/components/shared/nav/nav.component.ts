@@ -48,6 +48,11 @@ export class NavComponent implements OnInit {
     this.messengerService.getMsgAddToWishList().subscribe(() => {
       this.wishlist = this.wishlistService.getWishlist();
     });
+
+    this.messengerService.getMsgRemoveCart().subscribe(() => {
+      console.log('getMsgRemoveCart');
+      this.cartItems = this.cartService.getCartItems();
+    });
   }
   checkAuthantication() {
     if (localStorage.getItem('token') != null) {

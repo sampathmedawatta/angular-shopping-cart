@@ -83,6 +83,10 @@ export class CartService {
     }
   }
 
+  removeCart() {
+    console.log();
+    localStorage.removeItem('cart');
+  }
   calculateCartTotal(cartItems: CartItem[]) {
     this.cartTotal = 0;
     cartItems.forEach((item) => {

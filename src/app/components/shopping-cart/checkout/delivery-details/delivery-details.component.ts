@@ -6,8 +6,6 @@ import { Order } from 'src/app/models/order';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 import { OperationResult } from 'src/app/models/operation-result';
-import { Guid } from 'guid-typescript';
-import { PaymentMethod } from 'src/app/models/payment-method';
 
 @Component({
   selector: 'app-delivery-details',
@@ -15,7 +13,7 @@ import { PaymentMethod } from 'src/app/models/payment-method';
   styleUrls: ['./delivery-details.component.css'],
 })
 export class DeliveryDetailsComponent implements OnInit {
-  orderItems: OrderItem[];
+  orderItems: OrderItem[] = [];
   order: Order;
   paymentMethod = '5771E231-BACE-44CB-80E2-2DB0802CB29F';
   orderDetails = {
@@ -55,6 +53,8 @@ export class DeliveryDetailsComponent implements OnInit {
 
   isErrored: boolean = false;
   errorMessage: string = '';
+  isLoggedIn: boolean = false;
+  loggedInErrorMessage: string = '';
 
   constructor(
     private router: Router,
@@ -65,7 +65,12 @@ export class DeliveryDetailsComponent implements OnInit {
   ngOnInit(): void {
     let user = localStorage.getItem('user');
     if (user) {
+      this.isLoggedIn = true;
       this.userModel = JSON.parse(user);
+    } else {
+      this.isLoggedIn = false;
+      this.loggedInErrorMessage =
+        'Please Sign up or Register before placed the order. ';
     }
   }
 
@@ -91,6 +96,7 @@ export class DeliveryDetailsComponent implements OnInit {
     this.orderService.placeOrder(order).subscribe({
       next: (result: OperationResult) => {
         if (result.statusId == 200 && result.data != null) {
+          this.cartService.removeCart();
           this.router.navigateByUrl(
             '/checkout/order-confirmation/' + result.data
           );

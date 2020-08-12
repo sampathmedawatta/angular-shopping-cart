@@ -17,6 +17,7 @@
 .btn {
   border-radius: 0;
 }
+
 .btn-remove-product {
   padding: 0px 6px !important;
 }
@@ -62,4 +63,11 @@ btn-primary:disabled {
 }
 .cart-font-size {
   font-size: 12px;
+}
+.address-details {
+  margin-bottom: 0rem;
+}
+
+.bill-card-body {
+  margin-top: -25px;
 }
