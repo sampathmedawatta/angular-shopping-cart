@@ -1,6 +1,6 @@
 import { Guid } from 'guid-typescript';
-import { OrderItem } from './order-item';
 import { User } from './user';
+import { OrderItem } from './order-item';
 import { PaymentMethod } from './payment-method';
 
 export class Order {

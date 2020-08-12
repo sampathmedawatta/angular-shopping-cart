@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from 'src/app/models/order';
 import { ActivatedRoute } from '@angular/router';
 import { Guid } from 'guid-typescript';
-import { OrderService } from 'src/app/services/order.service';
 import { OperationResult } from 'src/app/models/operation-result';
 import { User } from 'src/app/models/user';
 import { PaymentMethod } from 'src/app/models/payment-method';
+import { MessengerService } from 'src/app/services/messenger.service';
+import { from } from 'rxjs';
+import { Order } from 'src/app/models/order';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -48,6 +50,7 @@ export class OrderConfirmationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private messengerService: MessengerService,
     private orderService: OrderService
   ) {}
 
@@ -65,18 +68,5 @@ export class OrderConfirmationComponent implements OnInit {
         this.order = result.data;
         this.deliveryDetails = result.data.deliveryDetails;
       });
-
-    // this.orderService.getOrderById(this.orderId).subscribe({
-    //   next: (result: OperationResult) => {
-    //     if (result.statusId == 200 && result.data != null) {
-    //       console.log('result ' + result);
-    //     } else {
-    //       //TODO show error order not found
-    //     }
-    //   },
-    //   error: (error) => {
-    //     console.error('There was an error!', error);
-    //   },
-    // });
   }
 }

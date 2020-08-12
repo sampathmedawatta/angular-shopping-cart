@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Order } from 'src/app/models/Order';
-import { OrderService } from 'src/app/services/order.service';
 import { User } from 'src/app/models/user';
 import { OperationResult } from 'src/app/models/operation-result';
+import { Order } from 'src/app/models/order';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-order-history',
@@ -11,7 +11,7 @@ import { OperationResult } from 'src/app/models/operation-result';
   styleUrls: ['./order-history.component.css'],
 })
 export class OrderHistoryComponent implements OnInit {
-  orderList: Order[] = [];
+  orderList: Order[];
   user: User;
   constructor(private router: Router, private orderService: OrderService) {}
 
@@ -37,9 +37,5 @@ export class OrderHistoryComponent implements OnInit {
 
   handlerVieworderItem(orderItem) {
     this.router.navigateByUrl('/checkout/order-confirmation/' + orderItem.id);
-
-    // this.orderService
-    //   .getOrderById(orderItem.id)
-    //   .subscribe((result: OperationResult) => {});
   }
 }

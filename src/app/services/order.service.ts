@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Order } from '../models/order';
 import { Observable } from 'rxjs';
-import { orderUrl, orderByIdUrl, orderHistorysUrl } from '../config/api';
 import { OperationResult } from '../models/operation-result';
+import { orderUrl, orderByIdUrl, orderHistoryUrl } from '../config/api';
 import { Guid } from 'guid-typescript';
 
 @Injectable({
@@ -26,6 +26,6 @@ export class OrderService {
   }
 
   getOrderHistory(userId: Guid): Observable<OperationResult> {
-    return this.http.get<OperationResult>(orderHistorysUrl + '/?Id=' + userId);
+    return this.http.get<OperationResult>(orderHistoryUrl + '/?Id=' + userId);
   }
 }
