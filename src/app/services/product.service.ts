@@ -26,10 +26,14 @@ export class ProductService {
   }
 
   getFeatureProducts(): Observable<OperationResult> {
-    return this.http.get<OperationResult>(featureProductsUrl);
+    return this.http.get<OperationResult>(
+      featureProductsUrl + '/FeatureProducts'
+    );
   }
 
   getHomePageProducts(): Observable<OperationResult> {
-    return this.http.get<OperationResult>(homePageProductsUrl);
+    return this.http.get<OperationResult>(
+      featureProductsUrl + '/HomePageProducts'
+    );
   }
 }

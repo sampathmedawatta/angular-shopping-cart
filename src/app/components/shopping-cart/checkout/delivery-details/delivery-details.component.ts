@@ -68,14 +68,38 @@ export class DeliveryDetailsComponent implements OnInit {
 
   checkout() {
     this.setPaymentDetails();
-    this.order = new Order(
-      this.orderDetails,
-      this.userModel,
-      this.orderItems,
-      this.paymentMethod
-    );
+    if (this.orderDetails.totalAmount > 0) {
+      this.order = new Order(
+        this.orderDetails,
+        this.userModel,
+        this.orderItems,
+        this.paymentMethod
+      );
+      this.saveOrder(this.order);
+    } else {
+      //TODO show error order amount can not be zero
+      //this.isErrored = true;
+      //this.errorMessage =
+      'Order amount can not be zero! Please add items to cart.';
+    }
 
     this.orderService.placeOrder(this.order).subscribe({
+      next: (result: OperationResult) => {
+        if (result.statusId == 200 && result.data != null) {
+          this.router.navigateByUrl(
+            '/checkout/order-confirmation/' + result.data
+          );
+        } else {
+          console.error('Something went Wrong!');
+        }
+      },
+      error: (error) => {
+        console.error('There was an error!', error);
+      },
+    });
+  }
+  saveOrder(order: Order) {
+    this.orderService.placeOrder(order).subscribe({
       next: (result: OperationResult) => {
         if (result.statusId == 200 && result.data != null) {
           this.router.navigateByUrl(
