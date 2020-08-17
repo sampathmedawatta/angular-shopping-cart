@@ -3,14 +3,18 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Observable, empty } from 'rxjs';
+import { tap, switchMap, catchError } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  refreshingAccessToken: boolean;
+
+  constructor(private authService: AuthService) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -25,18 +29,44 @@ export class AuthInterceptor implements HttpInterceptor {
 
       return next.handle(cloneReq).pipe(
         tap(
-          (success) => {},
-          (error) => {
-            if (error.status == 401) {
-              localStorage.removeItem('token');
-              localStorage.removeItem('user');
-              this.router.navigateByUrl('/login');
+          (success) => {
+            console.log('success token ');
+          },
+          catchError((error: HttpErrorResponse) => {
+            if (error.status == 401 && !this.refreshingAccessToken) {
+              return this.refreshAccessToken().pipe(
+                switchMap(() => {
+                  var request = req.clone({
+                    headers: req.headers.set(
+                      'Authorization',
+                      'Bearer ' + localStorage.getItem('token')
+                    ),
+                  });
+
+                  return next.handle(request);
+                }),
+                catchError((err: any) => {
+                  console.log(err);
+                  this.authService.logout();
+                  return empty;
+                })
+              );
             }
-          }
+          })
         )
       );
     } else {
       return next.handle(req.clone());
     }
+  }
+
+  refreshAccessToken() {
+    this.refreshingAccessToken = true;
+    return this.authService.getNewAccessToken().pipe(
+      tap(() => {
+        console.log('refresh token');
+        this.refreshingAccessToken = false;
+      })
+    );
   }
 }

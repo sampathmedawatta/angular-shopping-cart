@@ -27,11 +27,37 @@ export class OrderHistoryComponent implements OnInit {
     var localUser = localStorage.getItem('user');
     if (localUser != null) {
       this.user = JSON.parse(localUser);
-      this.orderService
-        .getOrderHistory(this.user.id)
-        .subscribe((result: OperationResult) => {
-          this.orderList = result.data;
-        });
+      // this.orderService
+      //   .getOrderHistory(this.user.id)
+      //   .subscribe((result: OperationResult) => {
+      //     this.orderList = result.data;
+      //   });
+
+      this.orderService.getOrderHistory(this.user.id).subscribe({
+        next: (result: OperationResult) => {
+          try {
+            if (result.statusId == 200 && result.data != null) {
+              this.orderList = result.data;
+            } else {
+              console.error('Something went Wrong!');
+            }
+          } catch (error) {
+            console.log('get order catch error 1 ' + error);
+          }
+        },
+        error: (err) => {
+          console.log('get order catch error' + err);
+          // try {
+          //   if (err.status == 401) {
+          //     console.error('There was an error 401 !', err);
+          //   } else {
+          //     console.error('error!', err);
+          //   }
+          // } catch (error) {
+          //   console.log('get order catch error' + error);
+          // }
+        },
+      });
     }
   }
 

@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { MessengerService } from 'src/app/services/messenger.service';
-import { Product } from 'src/app/models/product';
 import { WishlistService } from 'src/app/services/wishlist.service';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-nav',
@@ -21,8 +18,7 @@ export class NavComponent implements OnInit {
     private messengerService: MessengerService,
     private cartService: CartService,
     private wishlistService: WishlistService,
-    private authService: AuthService,
-    private router: Router
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -62,11 +58,6 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('user');
-
-    this.messengerService.sendMsgUserLogout();
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 }
